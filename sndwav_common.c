@@ -9,7 +9,13 @@
 #include <alsa/asoundlib.h> 
  
 #include "sndwav_common.h" 
- 
+
+/*-------------------------------------------------
+* func name: SNDWAV_P_GetFormat
+* in: WAVContainer_t *wav, snd_pcm_format_t *snd_format
+* out: 
+* action: assign snd_format using snd_format of wav 
+---------------------------------------------------*/ 
 int SNDWAV_P_GetFormat(WAVContainer_t *wav, snd_pcm_format_t *snd_format) 
 {    
     if (LE_SHORT(wav->format.format) != WAV_FMT_PCM) 
@@ -29,7 +35,13 @@ int SNDWAV_P_GetFormat(WAVContainer_t *wav, snd_pcm_format_t *snd_format)
  
     return 0; 
 } 
- 
+
+/*-------------------------------------------------
+* func name: SNDWAV_ReadPcm
+* in: SNDPCMContainer_t *sndpcm, size_t rcount
+* out: 
+* action: read from cpu fifo(DMA metmory) to memory 
+---------------------------------------------------*/  
 ssize_t SNDWAV_ReadPcm(SNDPCMContainer_t *sndpcm, size_t rcount) 
 { 
     ssize_t r; 
@@ -63,7 +75,13 @@ exit(-1);
     } 
     return rcount; 
 } 
- 
+
+/*-------------------------------------------------
+* func name: SNDWAV_WritePcm
+* in: SNDPCMContainer_t *sndpcm, size_t wcount
+* out: 
+* action: read from memory to cpu fifo(DMA metmory)
+---------------------------------------------------*/ 
 ssize_t SNDWAV_WritePcm(SNDPCMContainer_t *sndpcm, size_t wcount) 
 { 
     ssize_t r; 
@@ -97,7 +115,14 @@ exit(-1);
     } 
     return result; 
 } 
- 
+
+/*-------------------------------------------------
+* func name: SNDWAV_SetParams
+* in: SNDPCMContainer_t *sndpcm, WAVContainer_t *wav
+* out: 
+* action: set snd_pcm_hw_params_t to prepare DMA 
+*         from cpu fifo to ac97 fifo controler 
+---------------------------------------------------*/
 int SNDWAV_SetParams(SNDPCMContainer_t *sndpcm, WAVContainer_t *wav) 
 { 
     snd_pcm_hw_params_t *hwparams; 

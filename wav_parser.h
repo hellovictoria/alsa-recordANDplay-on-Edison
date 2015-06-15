@@ -73,6 +73,10 @@ typedef struct WAVChunkHeader {
     uint32_t length;        /* samplecount */ 
 } WAVChunkHeader_t; 
  
+/*-------------------------------------------------
+* class name: WAVContainer
+* description: it is a data structure of a .wav file
+---------------------------------------------------*/
 typedef struct WAVContainer { 
     WAVHeader_t header; 
     WAVFmt_t format; 

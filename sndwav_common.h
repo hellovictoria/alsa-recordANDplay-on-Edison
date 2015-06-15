@@ -12,6 +12,10 @@
  
 typedef long long off64_t; 
  
+/*-------------------------------------------------
+* class name: SNDPCMContainer
+* description: it is a data structure of pcm audio interface 
+---------------------------------------------------*/
 typedef struct SNDPCMContainer { 
     snd_pcm_t *handle; 
     snd_output_t *log; 

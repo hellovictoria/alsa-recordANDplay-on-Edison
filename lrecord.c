@@ -25,7 +25,14 @@
 #define DEFAULT_SAMPLE_RATE      (8000) 
 #define DEFAULT_SAMPLE_LENGTH    (16) 
 #define DEFAULT_DURATION_TIME    (10) 
- 
+
+/*-------------------------------------------------
+* func name: SNDWAV_PrepareWAVParams
+* in: wav 
+* out: 
+* action: set wav->header,wav->format,wav->chunk, or 
+*         set the members of a WAVContainer_t struct.
+---------------------------------------------------*/ 
 int SNDWAV_PrepareWAVParams(WAVContainer_t *wav) 
 { 
     assert(wav); 
@@ -58,6 +65,16 @@ int SNDWAV_PrepareWAVParams(WAVContainer_t *wav)
     return 0; 
 } 
  
+
+/*-------------------------------------------------
+* func name: SNDWAV_Record
+* in: sndpcm,wav,fd 
+* out: null
+* action: write wav to file fd  
+*         set write wav->header,wav->fomat,wav->chunk to file fd;
+*         write frames to sndpcm, write sndpcm->data_buf to file fd;
+---------------------------------------------------*/
+
 void SNDWAV_Record(SNDPCMContainer_t *sndpcm, WAVContainer_t *wav, int fd) 
 { 
     off64_t rest; 
@@ -83,6 +100,16 @@ void SNDWAV_Record(SNDPCMContainer_t *sndpcm, WAVContainer_t *wav, int fd)
     } 
 } 
  
+
+/*-------------------------------------------------
+* func name: main
+* in:
+* out:
+* action: snd_pcm_open, open device as capture
+*         SNDWAV_PrepareWAVParams, set members in a wavcontainer
+*         SNDWAV_SetParams, set snd_pcm_hw_params_t of a sndpcm, according to a wavcontainer 
+*         SNDWAV_Record, write voice to file 
+---------------------------------------------------*/
 int main(int argc, char *argv[]) 
 { 
     char *filename; 

@@ -11,6 +11,12 @@
  
 #define WAV_PRINT_MSG 
  
+/*-------------------------------------------------
+* func name: WAV_P_FmtString
+* in: uint16_t fmt
+* out: 
+* action: set format accordingly
+---------------------------------------------------*/ 
 char *WAV_P_FmtString(uint16_t fmt) 
 { 
     switch (fmt) { 
@@ -33,6 +39,12 @@ char *WAV_P_FmtString(uint16_t fmt)
     return "NON Support Fmt"; 
 } 
  
+/*-------------------------------------------------
+* func name: WAV_P_PrintHeader
+* in: WAVcontainer_t *container
+* out: 
+* action: print container->header,->format,->chunk on terminal
+---------------------------------------------------*/ 
 void WAV_P_PrintHeader(WAVContainer_t *container) 
 { 
     printf("+++++++++++++++++++++++++++/n"); 
@@ -76,6 +88,13 @@ printf("Fmt Sample_length:  [%d]/n", container->format.sample_length);
     printf("++++++++++++++++++++++++++++++++++++++/n"); 
 } 
  
+/*-------------------------------------------------
+* func name: WAV_P_CheckValid
+* in: WAVcontainer_t *container
+* out: 
+* action: check whether the members of container is 
+*         correctly set.
+---------------------------------------------------*/ 
 int WAV_P_CheckValid(WAVContainer_t *container) 
 { 
     if (container->header.magic != WAV_RIFF || 
@@ -91,6 +110,13 @@ int WAV_P_CheckValid(WAVContainer_t *container)
     return 0; 
 } 
  
+/*-------------------------------------------------
+* func name: WAV_ReadHeader
+* in: int *fd,WAVContainer_t * container
+* out: 
+* action: Read from file fd to container
+*          container->header,->format,->chunk 
+---------------------------------------------------*/
 int WAV_ReadHeader(int fd, WAVContainer_t *container) 
 { 
     assert((fd >=0) && container); 
@@ -112,7 +138,14 @@ if (read(fd,&container->header,sizeof(container->header))!=sizeof(container->hea
  
     return 0; 
 } 
- 
+
+/*-------------------------------------------------
+* func name: WAV_ReadHeader
+* in: int *fd,WAVContainer_t * container
+* out: 
+* action: write from container to file fd
+*          container->header,->format,->chunk 
+---------------------------------------------------*/ 
 int WAV_WriteHeader(int fd, WAVContainer_t *container) 
 { 
     assert((fd >=0) && container); 
