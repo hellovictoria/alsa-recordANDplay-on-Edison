@@ -1,5 +1,5 @@
 //File   : sndwav_common.c 
-//Author : Loon <sepnic@gmail.com> 
+
  
 #include <assert.h> 
 #include <stdio.h> 
