@@ -1,5 +1,5 @@
 //File   : sndwav_common.h 
-//Author : Loon <sepnic@gmail.com> 
+
  
 #ifndef __SNDWAV_COMMON_H 
 #define __SNDWAV_COMMON_H 
