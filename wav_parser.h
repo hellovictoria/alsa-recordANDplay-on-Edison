@@ -1,5 +1,4 @@
 //File   : wav_parser.h 
-//Author : Loon <sepnic@gmail.com> 
  
 #ifndef __WAV_PARSER_H 
 #define __WAV_PARSER_H 
