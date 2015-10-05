@@ -1,5 +1,4 @@
 //File   : lrecord.c 
-//Author : Loon <sepnic@gmail.com> 
  
 #include <stdio.h> 
 #include <malloc.h> 
